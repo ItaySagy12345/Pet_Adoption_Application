@@ -1,6 +1,6 @@
+import * as petService from '../../../Services/petService';
 import { useState } from 'react';
 import { SearchFormProps } from './ISearchFormProps';
-import { getPetsBySearchCriteria } from '../../../Services/petService';
 import { Pet } from '../../../Interfaces/IPet';
 import { PetSearch } from '../../../Interfaces/IPetSearch';
 
@@ -59,7 +59,7 @@ export function useSearchForm({ onSearchPets }: SearchFormProps) {
             minWeight: minWeight === '' ? null : +minWeight,
             maxWeight: maxWeight === '' ? null : +maxWeight
         });
-        const petSearchResults: Pet[] = await getPetsBySearchCriteria(petSearchParams);
+        const petSearchResults: Pet[] = await petService.getPetsBySearchCriteria(petSearchParams);
         onSearchPets(petSearchResults);
         resetSearchFormValues();
         setIsLoading(false);

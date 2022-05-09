@@ -3,8 +3,8 @@ import {
     COLOR_WORDING, HYPOALLERGENIC_STATUS_WORDING, DIETARY_RESTRICTIONS_WORDING, NAME_WORDING,
     SAVE_FOR_LATER_WORDING, UNSAVE_PET_WORDING
 } from '../../../../Utils/Constants/constants';
+import * as petService from '../../../../Services/petService';
 import { AuthContextType } from '../../../../Contexts/AuthContext/AuthContextType';
-import { adoptPet, fosterPet, returnPet, savePet, unSavePet } from '../../../../Services/petService';
 import { PetDetailsProps } from './IPetDetailsProps';
 import { Pet } from '../../../../Interfaces/IPet';
 import { useAuth } from '../../../../Hooks/useAuth';
@@ -35,27 +35,27 @@ export function usePetDetails({ pet }: PetDetailsProps) {
     const [saveUnSaveButtonWording, setSaveUnSaveButtonWording] = useState<string>(getSaveUnSaveButtonWording());
 
     const returnPetHandler = async () => {
-        const updatedReturnedPet: Pet = await returnPet(pet.petId);
+        const updatedReturnedPet: Pet = await petService.returnPet(pet.petId);
         updateInspectedPet(updatedReturnedPet);
     };
 
     const adoptPetHandler = async () => {
-        const updatedAdoptedPet: Pet = await adoptPet(pet.petId);
+        const updatedAdoptedPet: Pet = await petService.adoptPet(pet.petId);
         updateInspectedPet(updatedAdoptedPet);
     };
 
     const fosterPetHandler = async () => {
-        const updatedFosteredPet: Pet = await fosterPet(pet.petId);
+        const updatedFosteredPet: Pet = await petService.fosterPet(pet.petId);
         updateInspectedPet(updatedFosteredPet);
     };
 
     const saveAndUnSavePetHandler = async () => {
         if (saveUnSaveButtonWording === SAVE_FOR_LATER_WORDING) {
-            const updatedUser: ActiveUser = await savePet(pet.petId);
+            const updatedUser: ActiveUser = await petService.savePet(pet.petId);
             updateActiveUser(updatedUser);
             setSaveUnSaveButtonWording(UNSAVE_PET_WORDING);
         } else {
-            const updatedUser: any = await unSavePet(pet.petId);
+            const updatedUser: any = await petService.unSavePet(pet.petId);
             updateActiveUser(updatedUser);
             setSaveUnSaveButtonWording(SAVE_FOR_LATER_WORDING);
         }

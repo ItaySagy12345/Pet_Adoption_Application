@@ -1,18 +1,19 @@
 import {
     ADOPTION_STATUS_WORDING, ADOPTED_WORDING, NOT_ADOPTED_WORDING, ANIMAL_TYPE_WORDING, BREED_WORDING, COLOR_WORDING,
     HEIGHT_WORDING, WEIGHT_WORDING, HYPOALLERGENIC_STATUS_WORDING, NOT_HYPOALLERGENIC_WORDING, DIETARY_RESTRICTIONS_WORDING,
-    BIO_WORDING, NAME_WORDING, HYPOALLERGENIC_WORDING, FOSTERED_WORDING
+    BIO_WORDING, NAME_WORDING, HYPOALLERGENIC_WORDING, FOSTERED_WORDING, UPDATE_SUCCESS_MESSAGE
 } from '../../../Utils/Constants/constants';
-import Col from '../../General/Flexboxes/Column/Col';
-import Row from '../../General/Flexboxes/Row/Row';
-import { usePetForm } from './usePetForm';
 import ImageBubble from '../../General/ImageBubble/ImageBubble';
 import GeneralButton from '../../General/Buttons/GeneralButton/GeneralButton';
+import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import Col from '../../General/Flexboxes/Column/Col';
+import Row from '../../General/Flexboxes/Row/Row';
 import { styled } from '@mui/material/styles';
 import { PetFormProps } from './IPetFormProps';
+import { usePetForm } from './usePetForm';
 import '../../../Styles/general.css';
 import './PetForm.css';
 
@@ -52,6 +53,8 @@ function PetForm({ pet, formActionType }: PetFormProps) {
         imageUploadRef,
         isError,
         isLoading,
+        errorMessage,
+        isSuccessfulUpdate,
         getPetIcon,
         nameChangeHandler,
         adoptionStatusChangeHandler,
@@ -245,10 +248,22 @@ function PetForm({ pet, formActionType }: PetFormProps) {
                         isDisabled={false}
                     />
                 </Row>
-                {isLoading &&
-                    < Stack sx={{ color: 'silver' }} spacing={2} direction="row">
-                        <CircularProgress color="inherit" />
-                    </Stack>}
+                <Row styles="pet-form-conditional-messaging-container">
+                    <>
+                        {isLoading &&
+                            < Stack sx={{ color: 'silver' }} spacing={2} direction="row">
+                                <CircularProgress color="inherit" />
+                            </Stack>}
+                        {isSuccessfulUpdate &&
+                            < Alert severity="success">
+                                {UPDATE_SUCCESS_MESSAGE}
+                            </Alert>}
+                        {isError &&
+                            < Alert severity="error">
+                                {errorMessage}
+                            </Alert>}
+                    </>
+                </Row>
             </form>
         </Col >
     );

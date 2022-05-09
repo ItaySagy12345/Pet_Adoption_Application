@@ -3,6 +3,9 @@ import { PEEP_PETS_TITLE_STYLES } from '../../../Utils/Constants/constants';
 import { LogInFormProps } from './ILogInFormProps';
 import { useLogInForm } from './useLogInForm';
 import GeneralButton from '../../General/Buttons/GeneralButton/GeneralButton';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 import Col from '../../General/Flexboxes/Column/Col';
 import Row from '../../General/Flexboxes/Row/Row';
 import PeepPetsTitle from '../../General/Title/PeepPetsTitle';
@@ -13,6 +16,9 @@ function LogInForm({ successfulSignUpMessage, onAuthMethodChange }: LogInFormPro
     const {
         email,
         password,
+        isLoading,
+        isError,
+        errorMessage,
         renderSuccessfulSignUpMessage,
         emailChangeHandler,
         passwordChangeHandler,
@@ -61,6 +67,18 @@ function LogInForm({ successfulSignUpMessage, onAuthMethodChange }: LogInFormPro
                 <Row styles='auth-wording-container'>
                     <div>{LOGIN_AUTH_PROMPT}</div>
                     <div className="peep-pets-link" onClick={() => onAuthMethodChange(SIGN_UP_WORDING)}>{SIGN_UP_WORDING}</div>
+                </Row>
+                <Row styles="login-form-conditional-messaging-container">
+                    <>
+                        {isLoading &&
+                            < Stack sx={{ color: 'silver' }} spacing={2} direction="row">
+                                <CircularProgress color="inherit" />
+                            </Stack>}
+                        {isError &&
+                            < Alert severity="error">
+                                {errorMessage}
+                            </Alert>}
+                    </>
                 </Row>
             </form>
         </Col>

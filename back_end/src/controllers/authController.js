@@ -1,5 +1,6 @@
 import * as authService from "../services/authService.js";
 import * as library from '../library/library.js';
+import { LOG_IN_DATA_ERROR, TECHNICAL_ERROR } from "../library/constants.js";
 import { nanoid } from "nanoid";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -22,7 +23,7 @@ export async function signUp(req, res, next) {
         //Return newUser object back to client:
         return res.send(newUser);
     } catch (err) {
-        return res.status(400).send({ message: err });
+        return res.status(400).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -33,7 +34,7 @@ export async function logIn(req, res, next) {
         // Authentication: 
         const isMatchingPassword = await bcrypt.compare(user.password, user.hashPassword);
         if (!isMatchingPassword) {
-            return res.status(401).send("Email or password is wrong!");
+            return res.status(401).send({ message: LOG_IN_DATA_ERROR });
         }
         delete user.password;
         delete user.hashPassword;
@@ -60,7 +61,7 @@ export async function logIn(req, res, next) {
             email: user.email.toLowerCase()
         });
     } catch (err) {
-        return res.status(400).send({ message: err });
+        return res.status(400).send({ message: TECHNICAL_ERROR });
     }
 }
 

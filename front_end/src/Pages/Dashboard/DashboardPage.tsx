@@ -1,8 +1,8 @@
+import * as userService from "../../Services/userService";
+import * as petService from "../../Services/petService";
 import Dashboard from "../../Components/PetAdopt/Dashboard/Dashboard";
 import Row from "../../Components/General/Flexboxes/Row/Row";
 import { useState, useEffect } from "react";
-import { getFullUsers } from "../../Services/usersService";
-import { getPets } from "../../Services/petService";
 import { ActiveUser } from "../../Interfaces/IActiveUser";
 import { Pet } from "../../Interfaces/IPet";
 import '../widePage.css';
@@ -16,8 +16,8 @@ function DashboardPage() {
     }, []);
 
     const getUsersAndPetData = async () => {
-        const users: ActiveUser[] = await getFullUsers();
-        const pets: Pet[] = await getPets();
+        const users: ActiveUser[] = await userService.getFullUsers();
+        const pets: Pet[] = await petService.getPets();
         setUsersData(users);
         setPetsData(pets);
     };

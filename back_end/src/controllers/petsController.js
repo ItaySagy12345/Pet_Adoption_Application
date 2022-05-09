@@ -1,6 +1,7 @@
 import * as library from '../library/library.js';
 import * as petsService from '../services/petsService.js';
 import * as usersService from '../services/usersService.js';
+import { TECHNICAL_ERROR } from '../library/constants.js';
 import { v2 as cloudinary } from "cloudinary";
 import { nanoid } from "nanoid";
 import fs from "fs";
@@ -28,7 +29,7 @@ export async function addPet(req, res, next) {
 
         return res.send(addedPet);
     } catch (err) {
-        res.status(500).send({ message: err });
+        res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -39,7 +40,7 @@ export async function getPets(req, res, next) {
         pets.forEach((pet) => pet.name = library.getCapitalizedString(pet.name));
         return res.send(pets);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -51,7 +52,7 @@ export async function getPetById(req, res, next) {
         pet.name = library.getCapitalizedString(pet.name);
         return res.send(pet);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -62,7 +63,7 @@ export async function getOwnedPetsByUserId(req, res, next) {
         ownedPets.forEach((pet) => pet.name = library.getCapitalizedString(pet.name));
         return res.send(ownedPets);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -82,7 +83,7 @@ export async function updatePet(req, res, next) {
 
         return res.send(updatedPet);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -96,7 +97,7 @@ export async function adoptPet(req, res, next) {
         updatedAdoptedPet.name = library.getCapitalizedString(updatedAdoptedPet.name);
         return res.send(updatedAdoptedPet);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -110,7 +111,7 @@ export async function fosterPet(req, res, next) {
         updatedFosteredPet.name = library.getCapitalizedString(updatedFosteredPet.name);
         return res.send(updatedFosteredPet);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -123,7 +124,7 @@ export async function returnPet(req, res, next) {
         updatedReturnedPet.name = library.getCapitalizedString(updatedReturnedPet.name);
         return res.send(updatedReturnedPet);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -135,7 +136,7 @@ export async function savePet(req, res, next) {
         const updatedUser = await usersService.getFullUserById(userId);
         return res.send(updatedUser);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -147,7 +148,7 @@ export async function unSavePet(req, res, next) {
         const updatedUser = await usersService.getFullUserById(userId);
         return res.send(updatedUser);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -163,6 +164,6 @@ export async function getPetsBySearchCriteria(req, res, next) {
 
         return res.send(petResults.length !== 0 ? petResults : null);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }

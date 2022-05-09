@@ -1,14 +1,21 @@
-import { ENABLED_BUTTON_STYLE, DISABLED_BUTTON_STYLE } from '../../../Utils/Constants/constants';
+import { ENABLED_BUTTON_STYLE, DISABLED_BUTTON_STYLE, FIELD_LENGTH_ERROR_MESSAGE, PROFILE } from '../../../Utils/Constants/constants';
+import * as authService from '../../../Services/authService';
 import { AuthContextType } from '../../../Contexts/AuthContext/AuthContextType';
 import { UseLogInFormProps } from './IUseLogInFormProps';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../../Hooks/useAuth';
+import { ActiveUser } from '../../../Interfaces/IActiveUser';
+import { useNavigate } from "react-router-dom";
 
 export function useLogInForm({ onAuthMethodChange }: UseLogInFormProps) {
-    const { logInExistingUser } = useAuth() as AuthContextType;
+    const { updateActiveUser } = useAuth() as AuthContextType;
+    const navigator = useNavigate();
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
     const [renderSuccessfulSignUpMessage, setRenderSuccessfulSignUpMessage] = useState<boolean>(true);
 
     useEffect(() => {
@@ -37,12 +44,23 @@ export function useLogInForm({ onAuthMethodChange }: UseLogInFormProps) {
         return email && password;
     };
 
-    const logInHandler = (event: any) => {
-        event.preventDefault();
-        if (email.length > 45) return;
-        logInExistingUser({ email, password });
-        onAuthMethodChange(null);
-        resetFormValues();
+    const logInHandler = async (event: any) => {
+        try {
+            event.preventDefault();
+            if (email.length > 45) {
+                throw FIELD_LENGTH_ERROR_MESSAGE;
+            }
+            const loggedInUser: ActiveUser = await authService.logIn({ email, password });
+            updateActiveUser(loggedInUser);
+            onAuthMethodChange(null);
+            resetFormValues();
+            navigator(PROFILE);
+        } catch (err: any) {
+            setErrorMessage(err);
+            setIsLoading(false);
+            setIsError(true);
+            setTimeout(() => setIsError(false), 5000);
+        }
     };
 
     const resetFormValues = () => {
@@ -53,6 +71,9 @@ export function useLogInForm({ onAuthMethodChange }: UseLogInFormProps) {
     return {
         email,
         password,
+        isLoading,
+        isError,
+        errorMessage,
         renderSuccessfulSignUpMessage,
         emailChangeHandler,
         passwordChangeHandler,

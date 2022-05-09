@@ -1,19 +1,5 @@
 import axios from 'axios';
 
-// STYLES:
-export const ENABLED_BUTTON_STYLE = 'general-button';
-export const DISABLED_BUTTON_STYLE = 'general-button-disabled';
-export const PEEP_PETS_TITLE_STYLES = 'peep-pets-title';
-export const NAV_BAR_WRAPPER_STYLES = 'navbar-wrapper';
-export const NAV_BAR_TAB_STYLES = ['navbar-container', 'navbar-tab'];
-export const USER_GREETING_STYLES = ['user-greeting'];
-
-//Navigation Name Arrays:
-export const NAV_BAR_TAB_NAMES = ['home', 'search', 'mypets'];
-export const AUTH_BAR_NAMES = ['sign up', 'log in'];
-export const ADMIN_BAR_NAMES = ['dashboard', 'add pet'];
-export const SETTINGS_BAR_NAMES = ['profile', 'log out'];
-
 // WORDING:
 export const SUCCESSFUL_SIGN_UP_MESSAGE = "Successfully Signed Up!";
 export const FIRST_NAME_WORDING = 'First Name';
@@ -86,9 +72,26 @@ export const LOG_IN = LOG_IN_WORDING.toLowerCase();
 export const ADD_PET = ADD_PET_WORDING.toLowerCase();
 export const LOG_OUT = "log out";
 export const BUTTON_WORDING = "button";
+
+// STYLES:
+export const ENABLED_BUTTON_STYLE = 'general-button';
+export const DISABLED_BUTTON_STYLE = 'general-button-disabled';
+export const PEEP_PETS_TITLE_STYLES = 'peep-pets-title';
+export const NAV_BAR_WRAPPER_STYLES = 'navbar-wrapper';
+export const NAV_BAR_TAB_STYLES = ['navbar-container', 'navbar-tab'];
+export const USER_GREETING_STYLES = ['user-greeting'];
+
+//Navigation Name Arrays:
+export const NAV_BAR_TAB_NAMES = ['home', 'search', 'mypets'];
+export const AUTH_BAR_NAMES = ['sign up', 'log in'];
+export const ADMIN_BAR_NAMES = ['dashboard', 'add pet'];
+export const SETTINGS_BAR_NAMES = ['profile', 'log out'];
+
+//ERROR HANDLING:
+export const UPDATE_FAILED_ERROR = "Updated failed";
 export const PASSWORD_MATCH_ERROR_MESSAGE = "New and Confirm Password fields must match!";
-export const BAD_REQUEST_ERROR_MESSAGE = "Bad request..";
 export const FIELD_LENGTH_ERROR_MESSAGE = "Length of field is too long";
+export const DATA_VALIDATION_ERROR = "One or more fields are incorrect or missing";
 
 //TABS:
 export const HOME = '/';

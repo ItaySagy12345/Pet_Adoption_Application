@@ -1,6 +1,6 @@
 import { ENABLED_BUTTON_STYLE, DISABLED_BUTTON_STYLE, LOG_IN_WORDING, STATUS_OK, FIELD_LENGTH_ERROR_MESSAGE, PASSWORD_MATCH_ERROR_MESSAGE } from '../../../Utils/Constants/constants';
+import * as authService from '../../../Services/authService';
 import { useState } from 'react';
-import { signUp } from '../../../Services/authService';
 import { SignUpFormProps } from './ISignUpFormProps';
 import { ActiveUser } from '../../../Interfaces/IActiveUser';
 
@@ -13,7 +13,7 @@ export function useSignUpForm({ onAuthMethodChange, onSuccessfulSignUp }: SignUp
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<any>('');
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const firstNameChangeHandler = (input: string) => {
         setFirstName(input);
@@ -60,7 +60,7 @@ export function useSignUpForm({ onAuthMethodChange, onSuccessfulSignUp }: SignUp
             } else if (password !== confirmPassword) {
                 throw PASSWORD_MATCH_ERROR_MESSAGE;
             }
-            const signedUpUser: ActiveUser = await signUp({
+            const signedUpUser: ActiveUser = await authService.signUp({
                 firstName,
                 lastName,
                 email,
@@ -71,7 +71,7 @@ export function useSignUpForm({ onAuthMethodChange, onSuccessfulSignUp }: SignUp
             signedUpUser && onAuthMethodChange(LOG_IN_WORDING);
             onSuccessfulSignUp(STATUS_OK);
             resetSignUpFormValues();
-        } catch (err) {
+        } catch (err: any) {
             setErrorMessage(err);
             setIsLoading(false);
             setIsError(true);

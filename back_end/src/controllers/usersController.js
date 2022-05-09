@@ -1,5 +1,6 @@
 import * as usersService from '../services/usersService.js';
 import * as library from '../library/library.js';
+import { TECHNICAL_ERROR } from '../library/constants.js';
 
 export async function getUsers(req, res, next) {
     try {
@@ -11,7 +12,7 @@ export async function getUsers(req, res, next) {
         });
         return res.send(allUsers);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -25,7 +26,7 @@ export async function getFullUsers(req, res, next) {
         });
         return res.send(fullUsers);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -35,7 +36,7 @@ export async function getUserById(req, res, next) {
         user = library.toJSON(user);
         return res.send(user);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -45,7 +46,7 @@ export async function getFullUserById(req, res, next) {
         fullUser = library.toJSON(fullUser);
         return res.send(fullUser);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -57,7 +58,7 @@ export async function updateUserDetails(req, res, next) {
         updatedUser = await usersService.getFullUserById(userId);
         return res.send(updatedUser);
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }
 
@@ -68,6 +69,6 @@ export async function updateUserPassword(req, res, next) {
         await usersService.updateUser(userId, userUpdates);
         return res.status(200).send();
     } catch (err) {
-        return res.status(500).send({ message: err });
+        return res.status(500).send({ message: TECHNICAL_ERROR });
     }
 }

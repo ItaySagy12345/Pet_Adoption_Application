@@ -1,8 +1,8 @@
+import * as userService from "../../../../Services/userService";
 import { useState } from "react";
 import { AuthContextType } from "../../../../Contexts/AuthContext/AuthContextType";
 import { useAuth } from "../../../../Hooks/useAuth";
-import { updateUserPassword } from "../../../../Services/usersService";
-import { BAD_REQUEST_ERROR_MESSAGE, PASSWORD_MATCH_ERROR_MESSAGE, STATUS_OK } from "../../../../Utils/Constants/constants";
+import { PASSWORD_MATCH_ERROR_MESSAGE, STATUS_OK, UPDATE_FAILED_ERROR } from "../../../../Utils/Constants/constants";
 
 export function usePasswordForm() {
     const { activeUser } = useAuth() as AuthContextType;
@@ -11,7 +11,7 @@ export function usePasswordForm() {
     const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<any>('');
+    const [errorMessage, setErrorMessage] = useState<string>(UPDATE_FAILED_ERROR);
     const [isSuccessfulUpdate, setIsSuccessfulUpdate] = useState<boolean>(false);
 
     const oldPasswordChangeHandler = (input: string) => {
@@ -33,7 +33,7 @@ export function usePasswordForm() {
             if (newPassword !== confirmNewPassword) {
                 throw PASSWORD_MATCH_ERROR_MESSAGE;
             }
-            const updatePasswordConfirmation: any = await updateUserPassword(activeUser.userId, {
+            const updatePasswordConfirmation: any = await userService.updateUserPassword(activeUser.userId, {
                 oldPassword,
                 newPassword,
                 confirmNewPassword,
@@ -43,10 +43,8 @@ export function usePasswordForm() {
                 setIsLoading(false);
                 setIsSuccessfulUpdate(true);
                 setTimeout(() => setIsSuccessfulUpdate(false), 5000);
-            } else {
-                throw BAD_REQUEST_ERROR_MESSAGE;
             }
-        } catch (err) {
+        } catch (err: any) {
             setErrorMessage(err);
             resetPasswordFormValues();
             setIsLoading(false);

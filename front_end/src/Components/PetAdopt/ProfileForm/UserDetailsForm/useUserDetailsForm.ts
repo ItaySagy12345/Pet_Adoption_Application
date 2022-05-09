@@ -1,8 +1,9 @@
+import * as userService from "../../../../Services/userService";
 import { ActiveUser } from "../../../../Interfaces/IActiveUser";
-import { updateUserDetails } from "../../../../Services/usersService";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../Hooks/useAuth";
 import { AuthContextType } from "../../../../Contexts/AuthContext/AuthContextType";
+import { UPDATE_FAILED_ERROR } from "../../../../Utils/Constants/constants";
 
 export function useUserDetailsForm() {
     const { activeUser, updateActiveUser } = useAuth() as AuthContextType;
@@ -11,6 +12,7 @@ export function useUserDetailsForm() {
     const [phoneNumber, setPhoneNumber] = useState<string>(activeUser.phoneNumber);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>(UPDATE_FAILED_ERROR);
     const [isSuccessfulUpdate, setIsSuccessfulUpdate] = useState<boolean>(false);
 
     const emailChangeHandler = (input: string) => {
@@ -29,7 +31,7 @@ export function useUserDetailsForm() {
         try {
             event.preventDefault();
             setIsLoading(true);
-            const updatedUser: ActiveUser = await updateUserDetails(activeUser.userId, {
+            const updatedUser: ActiveUser = await userService.updateUserDetails(activeUser.userId, {
                 email,
                 phoneNumber,
                 personalBio
@@ -38,7 +40,8 @@ export function useUserDetailsForm() {
             setIsLoading(false);
             setIsSuccessfulUpdate(true);
             setTimeout(() => setIsSuccessfulUpdate(false), 5000);
-        } catch (err) {
+        } catch (err: any) {
+            setErrorMessage(err);
             setIsLoading(false);
             setIsError(true);
             setTimeout(() => setIsError(false), 5000);
@@ -61,6 +64,7 @@ export function useUserDetailsForm() {
         personalBio,
         isLoading,
         isError,
+        errorMessage,
         isSuccessfulUpdate,
         personalBioChangeHandler,
         emailChangeHandler,

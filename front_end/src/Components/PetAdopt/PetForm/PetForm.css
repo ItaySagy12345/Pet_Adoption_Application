@@ -121,3 +121,8 @@
     height: 2rem;
     width: 30%;
 }
+
+.pet-form-conditional-messaging-container {
+    width: 80%;
+    justify-content: center;
+}

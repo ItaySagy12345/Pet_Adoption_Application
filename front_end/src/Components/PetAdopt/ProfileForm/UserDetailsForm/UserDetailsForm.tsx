@@ -1,6 +1,6 @@
 import {
     EMAIL_WORDING, PEEP_PETS_TITLE_STYLES, PERSONAL_BIO_PLACEHOLDER, PERSONAL_BIO_WORDING, PERSONAL_DETAILS_WORDING,
-    PHONE_NUMBER_WORDING, UPDATE_SUCCESS_MESSAGE, UPDATE_FAIL_MESSAGE, UPDATE_USER_DETAILS_WORDING
+    PHONE_NUMBER_WORDING, UPDATE_SUCCESS_MESSAGE, UPDATE_USER_DETAILS_WORDING
 } from '../../../../Utils/Constants/constants';
 import GeneralButton from '../../../General/Buttons/GeneralButton/GeneralButton';
 import Row from '../../../General/Flexboxes/Row/Row';
@@ -20,6 +20,7 @@ function UserDetailsForm() {
         personalBio,
         isLoading,
         isError,
+        errorMessage,
         isSuccessfulUpdate,
         personalBioChangeHandler,
         emailChangeHandler,
@@ -89,7 +90,7 @@ function UserDetailsForm() {
                             </Alert>}
                         {isError &&
                             < Alert severity="error">
-                                {UPDATE_FAIL_MESSAGE}
+                                {errorMessage}
                             </Alert>}
                     </>
                 </Row>

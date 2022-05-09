@@ -1,6 +1,6 @@
-import { ADD_PET_WORDING, UPDATE_PET_WORDING, STATUS_OK } from "../../../Utils/Constants/constants";
+import { ADD_PET_WORDING, UPDATE_PET_WORDING, STATUS_OK, DATA_VALIDATION_ERROR } from "../../../Utils/Constants/constants";
+import * as petService from '../../../Services/petService';
 import { useState, useRef } from "react";
-import { addPet, updatePet } from "../../../Services/petService";
 import { PetFormProps } from "./IPetFormProps";
 
 export function usePetForm({ pet, formActionType }: PetFormProps) {
@@ -15,8 +15,10 @@ export function usePetForm({ pet, formActionType }: PetFormProps) {
     const [dietaryRestrictions, setDietaryRestrictions] = useState<string>(pet.dietaryRestrictions);
     const [bio, setBio] = useState<string>(pet.bio);
     const [imageUpload, setImageUpload] = useState<string | undefined>(pet.image);
-    const [isError, setIsError] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [isSuccessfulUpdate, setIsSuccessfulUpdate] = useState<boolean>(false);
     const imageUploadRef = useRef<HTMLInputElement | null>(null);
 
     const nameChangeHandler = (input: string) => {
@@ -72,40 +74,51 @@ export function usePetForm({ pet, formActionType }: PetFormProps) {
     };
 
     const addOrEditPetHandler = async (event: any) => {
-        event.preventDefault();
-        setIsLoading(true);
-        if (name === null || adoptionStatus === null || animalType === null || breed === null || color === null || height === null ||
-            weight === null || hypoallergenicStatus === null || dietaryRestrictions === null || bio === null || imageUpload === null) {
+        try {
+            event.preventDefault();
+            setIsLoading(true);
+            if (name === null || adoptionStatus === null || animalType === null || breed === null || color === null || height === null ||
+                weight === null || hypoallergenicStatus === null || dietaryRestrictions === null || bio === null || imageUpload === null) {
+                throw DATA_VALIDATION_ERROR;
+            }
+            const newOrUpdatedPet: any = {
+                name,
+                adoptionStatus,
+                animalType,
+                breed,
+                color,
+                height: `${height}`,
+                weight: `${weight}`,
+                hypoallergenicStatus,
+                dietaryRestrictions,
+                bio,
+                image: imageUploadRef.current?.files?.[0]
+            };
+            if (formActionType === ADD_PET_WORDING) {
+                const addPetConfirmation: string | number = await petService.addPet(newOrUpdatedPet);
+                addPetConfirmation === STATUS_OK && handleSuccessfulSubmission();
+            } else if (formActionType === UPDATE_PET_WORDING) {
+                newOrUpdatedPet.petId = pet.petId;
+                newOrUpdatedPet.userId = pet.userId;
+                const updatePetConfirmation: string | number = await petService.updatePet(pet.petId, newOrUpdatedPet);
+                updatePetConfirmation === STATUS_OK && handleSuccessfulSubmission();
+            }
+        } catch (err: any) {
+            setErrorMessage(err);
+            setIsLoading(false);
             setIsError(true);
-            return;
+            setTimeout(() => setIsError(false), 5000);
         }
-        const newOrUpdatedPet: any = {
-            name,
-            adoptionStatus,
-            animalType,
-            breed,
-            color,
-            height: `${height}`,
-            weight: `${weight}`,
-            hypoallergenicStatus,
-            dietaryRestrictions,
-            bio,
-            image: imageUploadRef.current?.files?.[0]
-        };
-        if (formActionType === ADD_PET_WORDING) {
-            const addPetConfirmation: any = await addPet(newOrUpdatedPet);
-            addPetConfirmation === STATUS_OK && alert('Successfully added pet!');
-        } else if (formActionType === UPDATE_PET_WORDING) {
-            newOrUpdatedPet.petId = pet.petId;
-            newOrUpdatedPet.userId = pet.userId;
-            const updatePetConfirmation: any = await updatePet(pet.petId, newOrUpdatedPet);
-            updatePetConfirmation === STATUS_OK && alert('Successfully updated pet!');
-        }
-        setIsLoading(false);
-        resetFormValues();
     };
 
-    const resetFormValues = () => {
+    const handleSuccessfulSubmission = () => {
+        setIsLoading(false);
+        setIsSuccessfulUpdate(true);
+        resetPetFormValues();
+        setTimeout(() => setIsSuccessfulUpdate(false), 5000);
+    };
+
+    const resetPetFormValues = () => {
         if (imageUploadRef && imageUploadRef.current) {
             imageUploadRef.current.value = '';
         }
@@ -137,6 +150,8 @@ export function usePetForm({ pet, formActionType }: PetFormProps) {
         imageUploadRef,
         isError,
         isLoading,
+        errorMessage,
+        isSuccessfulUpdate,
         getPetIcon,
         nameChangeHandler,
         adoptionStatusChangeHandler,
