@@ -1,0 +1,13 @@
+.entity-card-container {
+    width: 90%;
+    padding: 0.5rem 0;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.entity-name {
+    height: 5vh;
+    width: 100%;
+    font-size: 2rem;
+    justify-content: center;
+}

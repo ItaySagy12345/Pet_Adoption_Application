@@ -1,0 +1,44 @@
+.pet-result-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+.pet-result-inner-container {
+    height: 95%;
+    width: 95%;
+}
+
+.pet-result-image-container {
+    height: 50%;
+    width: 50%;
+    justify-content: center;
+}
+
+.pet-result-image {
+    height: 100%;
+    width: 100%;
+}
+
+.pet-name-container {
+    height: 40%;
+    width: 100%;
+    justify-content: center;
+}
+
+.pet-name {
+    font-size: 2rem;
+    color: #4d4751;
+}
+
+.pet-buttons-container {
+    height: 30%;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.pet-result-button-container {
+    height: 100%;
+    width: 30%;
+}

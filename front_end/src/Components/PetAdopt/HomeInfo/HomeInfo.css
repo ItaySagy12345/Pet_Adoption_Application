@@ -1,0 +1,39 @@
+.home-info-container {
+    height: 100%;
+    width: 60%;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+}
+
+.home-info-inner-container {
+    height: 95%;
+    width: 95%;
+    gap: 5%;
+    justify-content: center;
+}
+
+.home-main-image {
+    height: 65%;
+    width: 80%;
+    background-repeat: no-repeat;
+}
+
+.home-main-image-src {
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.home-description-container {
+    flex: 1;
+    width: 80%;
+    justify-content: center;
+}
+
+.home-description-inner-container {
+    height: 95%;
+    width: 95%;
+    justify-content: center;
+}

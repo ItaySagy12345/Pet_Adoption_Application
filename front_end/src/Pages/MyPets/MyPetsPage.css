@@ -1,0 +1,24 @@
+.my-pets-page-container {
+    gap: 1rem;
+}
+
+.my-pets-page-options-container {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.toggle-pets-tab-title-container {
+    font-size: 2rem;
+    margin-left: 42%;
+}
+
+.toggle-pets-tab-button-wrapper {
+    height: 3rem;
+    width: 7rem;
+}
+
+.no-pets-message {
+    font-size: 2rem;
+    margin-top: 15%;
+    justify-content: center;
+}

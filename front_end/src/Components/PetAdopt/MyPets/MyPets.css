@@ -1,0 +1,9 @@
+.my-pets-container {
+    width: 100%;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+}
+
+.pet {
+    height: 20rem;
+}

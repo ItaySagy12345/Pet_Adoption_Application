@@ -1,0 +1,21 @@
+.navbar-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.navbar-tab {
+    color: var(--font-black);
+    display: flex;
+    text-decoration: none;
+    font-family: var(--font-theme);
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.navbar-tab:hover {
+    color: var(--theme-green);
+    transition: all 0.15s ease-in-out;
+}

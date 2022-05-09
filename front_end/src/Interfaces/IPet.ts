@@ -1,0 +1,15 @@
+export interface Pet {
+    petId: string,
+    userId: string | null,
+    animalType: string,
+    name: string,
+    adoptionStatus: number,
+    height: number,
+    weight: number,
+    color: string,
+    hypoallergenicStatus: number,
+    breed: string,
+    dietaryRestrictions: string,
+    bio: string,
+    image: string | undefined,
+}

@@ -1,0 +1,68 @@
+.pet-details-container {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    justify-content: center;
+}
+
+.pet-details-inner-container {
+    height: 95%;
+    width: 95%;
+    gap: 2%;
+}
+
+.pet-details-image-container {
+    height: 50%;
+    width: 50%;
+    justify-content: center;
+}
+
+.pet-details-image {
+    height: 100%;
+    width: 100%;
+}
+
+.pet-info-container {
+    width: 90%;
+}
+
+.pet-detail-grid {
+    width: 100%;
+}
+
+.pet-detail {
+    height: 100%;
+    flex: 1;
+}
+
+.category {
+    height: 100%;
+    flex: 1;
+}
+
+.pet-bio-container {
+    width: 100%;
+}
+
+.pet-bio-wording {
+    height: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.pet-bio {
+    height: 5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.action-buttons-container {
+    height: 2.5rem;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.pet-details-button-container {
+    height: 2rem;
+    width: 20%;
+}

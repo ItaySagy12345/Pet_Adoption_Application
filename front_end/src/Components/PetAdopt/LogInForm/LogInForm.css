@@ -1,0 +1,73 @@
+.log-in-form-container {
+    min-height: 60vh;
+    width: 35vw;
+    margin: 2.5% auto;
+    justify-content: space-evenly;
+    border: 2px solid #CCCCCC;
+    background-color: white;
+    padding: 2rem 0;
+}
+
+.new-user-greeting-container {
+    height: 2rem;
+    width: 50%;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    justify-content: center;
+    color: white;
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+}
+
+.log-in-form {
+    height: 95%;
+    width: 65%;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.log-in-fieldset {
+    height: 3.5rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+    color: #4d4751;
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    background-color: transparent;
+    border: 1px solid #d2d1d3;
+}
+
+.log-in-input {
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    resize: none;
+    color: brown;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.log-in-fieldset:hover {
+    border: 1px solid brown;
+    transition: 0.15s ease-in;
+}
+
+.log-in-input:-webkit-autofill,
+.log-in-input:-webkit-autofill:hover,
+.log-in-input:-webkit-autofill:focus,
+.log-in-input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.log-in-form-button-container {
+    height: 2.5rem;
+    width: 100%;
+}
+
+.auth-wording-container {
+    gap: 0.5rem;
+}

@@ -1,0 +1,18 @@
+.dashboard-main-container {
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-container {
+    height: 100%;
+    flex: 1;
+    gap: 2.5%;
+}
+
+.dashboard-title-container {}
+
+.dashboard-entries-container {
+    width: 100%;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}

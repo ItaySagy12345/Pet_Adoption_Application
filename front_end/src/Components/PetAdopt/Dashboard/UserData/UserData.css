@@ -1,0 +1,26 @@
+.user-data-details-container {
+    width: 100%;
+    gap: 1rem;
+    overflow: auto;
+}
+
+.contact-details {
+    height: 2.5rem;
+    width: 90%;
+    gap: 2rem;
+}
+
+.contact-detail {
+    width: 50%;
+    text-align: center;
+}
+
+.pets-grid {
+    max-height: 20rem;
+    gap: 3rem;
+}
+
+.pet-result-wrapper {
+    height: 12rem;
+    width: 15rem;
+}

@@ -1,0 +1,31 @@
+* {
+    /* border: 1px solid red; */
+}
+
+.profile-form-container {
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+    background-color: var(--theme-creme);
+}
+
+.title-wrapper {
+    width: 100%;
+    background-color: white;
+}
+
+.user-details-password-forms-container {
+    flex: 1;
+    width: 100%;
+    gap: 1rem;
+}
+
+.update-user-details-form-wrapper {
+    height: 100%;
+    width: 65%;
+}
+
+.update-password-form-wrapper {
+    height: 100%;
+    flex: 1;
+}

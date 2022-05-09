@@ -1,0 +1,66 @@
+.sign-up-form-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    background-color: white;
+}
+
+.sign-up-form {
+    height: 95%;
+    width: 65%;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: center;
+}
+
+.sign-up-fieldset {
+    height: 3.5rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+    color: #4d4751;
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    background-color: transparent;
+    border: 1px solid #d2d1d3;
+}
+
+.sign-up-input {
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    resize: none;
+    color: brown;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.sign-up-fieldset:hover {
+    border: 1px solid brown;
+    transition: 0.15s ease-in;
+}
+
+.sign-up-input:-webkit-autofill,
+.sign-up-input:-webkit-autofill:hover,
+.sign-up-input:-webkit-autofill:focus,
+.sign-up-input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.sign-up-form-button-container {
+    height: 2.5rem;
+    width: 100%;
+}
+
+.auth-wording-container {
+    gap: 0.5rem;
+}
+
+.signup-form-conditional-messaging-container {
+    height: 5%;
+    width: 80%;
+    justify-content: center;
+}

@@ -1,0 +1,68 @@
+/* GENERAL */
+.flex-row,
+.flex-col {
+    display: flex;
+    align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.invisible {
+    display: none;
+}
+
+.card {
+    border-radius: 12px;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+}
+
+/* TITLE */
+.peep-pets-title {
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    color: #4d4751;
+    text-align: center;
+}
+
+/* USER GREETING */
+.user-greeting {
+    font-size: 1.25rem;
+    color: #4d4751;
+}
+
+/* LINKS */
+.peep-pets-link {
+    color: brown;
+    text-decoration: underline;
+}
+
+.peep-pets-link:hover {
+    color: rgb(85, 30, 30);
+    text-decoration: underline;
+}
+
+/* SCROLLBAR ANIMATION*/
+#root::-webkit-scrollbar,
+.user-data-details-container::-webkit-scrollbar,
+.personal-bio-textarea::-webkit-scrollbar {
+    width: 12px;
+}
+
+#root::-webkit-scrollbar-thumb,
+.user-data-details-container::-webkit-scrollbar-thumb,
+.personal-bio-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--theme-green);
+    border-radius: 20px;
+    border: 3px solid var(--theme-green);
+}
+
+/* #root::-webkit-scrollbar-track,
+.personal-bio-textarea::-webkit-scrollbar-track {
+    background: transparent;
+    border: 2px solid var(--theme-green);
+    border-radius: 20px;
+} */

@@ -1,0 +1,80 @@
+.search-form-container {
+    height: auto;
+    width: 100%;
+    justify-content: center;
+    border: 2px solid #CCCCCC;
+    background-color: white;
+}
+
+.search-form {
+    min-height: 30vh;
+    width: 65%;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.basic-search-container {
+    width: 50%;
+    gap: 10%;
+    justify-content: space-between;
+}
+
+.additional-options-button-container {
+    height: 100%;
+    width: 50%;
+}
+
+.search-fieldset {
+    height: 3.5rem;
+    width: 80%;
+    outline: none;
+    border: none;
+    resize: none;
+    color: #4d4751;
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    background-color: transparent;
+    border: 1px solid #d2d1d3;
+}
+
+.search-input {
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    resize: none;
+    color: brown;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.search-fieldset:hover {
+    border: 1px solid brown;
+    transition: 0.15s ease-in;
+}
+
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover,
+.search-input:-webkit-autofill:focus,
+.search-input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.height-weight-input-containers {
+    height: 20vh;
+    width: 80%;
+    gap: 5%;
+}
+
+.height-weight-input-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    gap: 5%;
+}
+
+.search-form-button-container {
+    height: 2.5rem;
+    width: 100%;
+}

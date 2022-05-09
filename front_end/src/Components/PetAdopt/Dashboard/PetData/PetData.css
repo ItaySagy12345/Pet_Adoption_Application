@@ -1,0 +1,9 @@
+.pet-data-grid {
+    width: 100%;
+    padding: 1rem;
+}
+
+.pet-data-button-container {
+    height: 3rem;
+    width: 7rem;
+}
