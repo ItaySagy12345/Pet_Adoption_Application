@@ -8,15 +8,20 @@ import './SearchPage.css';
 
 function SearchPage() {
     const [petResults, setPetResults] = useState<Pet[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const searchPetsHandler = (petResults: Pet[]) => {
         setPetResults(petResults);
     };
 
+    const searchPetsErrorHandler = (errorMessage: string | null) => {
+        setErrorMessage(errorMessage);
+    };
+
     return (
         <Col styles='skinny-page search-page'>
-            <SearchForm onSearchPets={searchPetsHandler} />
-            <SearchResults pets={petResults} />
+            <SearchForm onSearchPets={searchPetsHandler} onError={searchPetsErrorHandler} />
+            <SearchResults pets={petResults} errorMessage={errorMessage} />
         </Col>
     );
 }

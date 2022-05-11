@@ -1,9 +1,5 @@
-import {
-    ANIMAL_TYPE_WORDING, BREED_WORDING, ADOPTION_STATUS_WORDING, HEIGHT_WORDING, WEIGHT_WORDING,
-    COLOR_WORDING, HYPOALLERGENIC_STATUS_WORDING, DIETARY_RESTRICTIONS_WORDING, NAME_WORDING,
-    SAVE_FOR_LATER_WORDING, UNSAVE_PET_WORDING
-} from '../../../../Utils/Constants/constants';
 import * as petService from '../../../../Services/petService';
+import { SAVE_FOR_LATER_WORDING, UNSAVE_PET_WORDING } from '../../../../Utils/Constants/constants';
 import { AuthContextType } from '../../../../Contexts/AuthContext/AuthContextType';
 import { PetDetailsProps } from './IPetDetailsProps';
 import { Pet } from '../../../../Interfaces/IPet';
@@ -14,17 +10,6 @@ import { InspectedPetContextType } from '../../../../Contexts/InspectedPetContex
 import { useInspectedPet } from '../../../../Hooks/useInspectedPet';
 
 export function usePetDetails({ pet }: PetDetailsProps) {
-    const petPropertiesArray = [
-        { category: `😎 ${NAME_WORDING}: `, categoryValue: pet.name },
-        { category: `💚 ${ADOPTION_STATUS_WORDING}: `, categoryValue: pet.adoptionStatus === 0 ? 'Needs a home!' : 'Adopted' },
-        { category: `🐾 ${ANIMAL_TYPE_WORDING}: `, categoryValue: pet.animalType },
-        { category: `🐺 ${BREED_WORDING}: `, categoryValue: pet.breed },
-        { category: `🌈 ${COLOR_WORDING}: `, categoryValue: pet.color },
-        { category: `👠 ${HEIGHT_WORDING}: `, categoryValue: pet.height },
-        { category: `⚖️ ${WEIGHT_WORDING}: `, categoryValue: pet.weight },
-        { category: `🍫 ${HYPOALLERGENIC_STATUS_WORDING}: `, categoryValue: pet.hypoallergenicStatus === 0 ? "Not hypoallergenic" : "Hypoallergenic" },
-        { category: `🥫 ${DIETARY_RESTRICTIONS_WORDING}: `, categoryValue: pet.dietaryRestrictions }
-    ];
     const { activeUser, updateActiveUser } = useAuth() as AuthContextType;
     const { updateInspectedPet } = useInspectedPet() as InspectedPetContextType;
 
@@ -63,7 +48,6 @@ export function usePetDetails({ pet }: PetDetailsProps) {
 
     return {
         activeUser,
-        petPropertiesArray,
         saveUnSaveButtonWording,
         returnPetHandler,
         adoptPetHandler,

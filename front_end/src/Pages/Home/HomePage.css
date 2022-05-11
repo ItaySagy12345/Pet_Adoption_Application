@@ -2,3 +2,15 @@
     gap: 2%;
     align-items: flex-start;
 }
+
+@media (max-width: 1320px) {
+    .home-page {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .home-page {
+        flex-direction: column;
+    }
+}

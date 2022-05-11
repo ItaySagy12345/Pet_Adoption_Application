@@ -37,3 +37,15 @@
     width: 95%;
     justify-content: center;
 }
+
+@media (max-width: 1000px) {
+    .home-info-container {
+        width: 100%;
+    }
+}
+
+@media (max-height: 910px) {
+    .home-info-container {
+        padding: 2rem 0;
+    }
+}

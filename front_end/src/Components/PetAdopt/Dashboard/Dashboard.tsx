@@ -10,7 +10,7 @@ import PeepPetsModal from '../../General/Modals/PeepPetsModal';
 import PetForm from '../PetForm/PetForm';
 import './Dashboard.css';
 
-function Dashboard({ users, pets }: DashboardProps) {
+function Dashboard({ users, pets, onChangePetInfo }: DashboardProps) {
     const [petToInspect, setPetToInspect] = useState<Pet>({} as Pet);
     const [formInModal, setFormInModal] = useState<string | null>(null);
 
@@ -58,6 +58,7 @@ function Dashboard({ users, pets }: DashboardProps) {
                     <PetForm
                         pet={petToInspect}
                         formActionType={UPDATE_PET_WORDING}
+                        onChangePetInfo={onChangePetInfo}
                     />
                     :
                     null}

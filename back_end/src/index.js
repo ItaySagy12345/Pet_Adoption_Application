@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import chalk from 'chalk';
 import cors from 'cors';
+import pino from 'pino-http';
 import "dotenv/config";
 
 const app = express();
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 8080;
 const DB = process.env.DB_NAME;
 
 app.use(express.json());
+app.use(pino({ level: process.env.LOG_LEVEL }));
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(cookieParser());
 

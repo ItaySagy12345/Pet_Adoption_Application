@@ -14,12 +14,12 @@
 }
 
 .pet-image-upload-container {
-    height: 15%;
+    min-height: 15%;
     gap: 2rem;
 }
 
 .image-upload-input {
-    height: 2rem;
+    min-height: 2rem;
     flex: 1;
     font-size: 1.25rem;
 }
@@ -34,15 +34,16 @@
 }
 
 .pet-info-container {
-    height: 70%;
+    min-height: 70%;
     width: 100%;
     gap: 1rem;
     justify-content: space-between;
+    overflow: auto;
 }
 
 .pet-detail-single-container {
     height: 2rem;
-    width: 30%;
+    min-width: 30%;
 }
 
 .pet-detail-pair-container {
@@ -125,4 +126,17 @@
 .pet-form-conditional-messaging-container {
     width: 80%;
     justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .pet-detail-pair-container {
+        flex-direction: column;
+        height: auto;
+        width: 80%;
+        gap: 1rem;
+    }
+
+    .pet-detail {
+        width: 100%;
+    }
 }

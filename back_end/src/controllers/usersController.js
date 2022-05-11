@@ -1,6 +1,6 @@
 import * as usersService from '../services/usersService.js';
-import * as library from '../library/library.js';
-import { TECHNICAL_ERROR } from '../library/constants.js';
+import * as library from '../utils/library/library.js';
+import { TECHNICAL_ERROR } from '../utils/constants/constants.js';
 
 export async function getUsers(req, res, next) {
     try {
@@ -32,7 +32,8 @@ export async function getFullUsers(req, res, next) {
 
 export async function getUserById(req, res, next) {
     try {
-        let user = await usersService.getUserById(req.body.userId);
+        const userId = req.params.id;
+        let user = await usersService.getUserById(userId);
         user = library.toJSON(user);
         return res.send(user);
     } catch (err) {
@@ -42,7 +43,8 @@ export async function getUserById(req, res, next) {
 
 export async function getFullUserById(req, res, next) {
     try {
-        let fullUser = await usersService.getFullUserById(req.body.userId);
+        const userId = req.params.id;
+        let fullUser = await usersService.getFullUserById(userId);
         fullUser = library.toJSON(fullUser);
         return res.send(fullUser);
     } catch (err) {

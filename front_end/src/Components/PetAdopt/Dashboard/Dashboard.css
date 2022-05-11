@@ -16,3 +16,13 @@
     gap: 2rem;
     padding-bottom: 2rem;
 }
+
+@media (max-width: 1000px) {
+    .dashboard-main-container {
+        flex-direction: column;
+    }
+
+    .dashboard-container {
+        width: 100%;
+    }
+}

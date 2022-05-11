@@ -12,7 +12,7 @@
 }
 
 .email-phone-number-fields-wrapper {
-    height: 62.5%;
+    min-height: 62.5%;
     width: 100%;
 }
 
@@ -64,12 +64,6 @@
     transition: background-color 5000s ease-in-out 0s;
 }
 
-.update-contact-form-button-wrapper {
-    height: 2.5rem;
-    width: 100%;
-}
-
-/* PERSONAL BIO */
 .personal-bio-container {
     height: 100%;
     flex: 1;
@@ -88,7 +82,18 @@
     border: 1px solid #d2d1d3;
 }
 
+.update-contact-form-button-wrapper {
+    height: 50px;
+    width: 100%;
+}
+
 .user-details-form-conditional-messaging-container {
     width: 80%;
     justify-content: center;
+}
+
+@media (max-width: 391px) {
+    .email-phone-number-fields-wrapper {
+        padding-bottom: 1rem;
+    }
 }

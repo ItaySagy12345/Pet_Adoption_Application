@@ -1,7 +1,3 @@
-* {
-    /* border: 1px solid red; */
-}
-
 .profile-form-container {
     height: 100%;
     width: 100%;
@@ -28,4 +24,16 @@
 .update-password-form-wrapper {
     height: 100%;
     flex: 1;
+}
+
+@media (max-width: 650px) {
+    .user-details-password-forms-container {
+        flex-direction: column;
+    }
+
+    .update-user-details-form-wrapper,
+    .update-password-form-wrapper {
+        height: 100%;
+        width: 100%;
+    }
 }

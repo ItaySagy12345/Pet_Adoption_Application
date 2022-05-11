@@ -4,8 +4,8 @@ import PetData from '../PetData/PetData';
 import Col from '../../../General/Flexboxes/Column/Col';
 import Row from '../../../General/Flexboxes/Row/Row';
 import { isAUser, isAPet } from '../../../../Utils/Library/library';
-import './EntityCard.css';
 import { EntityCardProps } from './IEntityCardProps';
+import './EntityCard.css';
 
 function EntityCard({ entity, onMoreDetailsRequest }: EntityCardProps) {
     const [isOpenDetails, setIsOpenDetails] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import { DATA_VALIDATION_ERROR } from '../library/constants.js';
+import { DATA_VALIDATION_ERROR } from '../utils/constants/constants.js';
 import * as userSchemas from '../schemas/userSchemas.js';
 import Ajv from "ajv";
 

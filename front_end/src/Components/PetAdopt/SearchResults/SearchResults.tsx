@@ -10,31 +10,39 @@ import Row from '../../General/Flexboxes/Row/Row';
 import '../../../Styles/general.css';
 import './SearchResults.css';
 
-function SearchResults({ pets }: SearchResultsProps) {
+function SearchResults({ pets, errorMessage }: SearchResultsProps) {
     const { updateInspectedPet } = useInspectedPet() as InspectedPetContextType;
 
-    const moreDetailsRequestHandler = (pet: Pet) => {
+    //Event sent by default by PetResult component:
+    const moreDetailsRequestHandler = (event: any, pet: Pet) => {
         updateInspectedPet(pet);
     };
 
     return (
         <Col styles='search-results-grid-container card'>
-            {pets ?
-                <SymmetricalGrid styles='search-results-grid' numOfColumns={3}>
-                    {pets.map((pet: Pet, index: number) => (
-                        <Row styles='search-pet-result-wrapper'>
-                            <PetResult
-                                key={index}
-                                pet={pet}
-                                onMoreDetailsRequest={moreDetailsRequestHandler}
-                            />
+            <>
+                {errorMessage ?
+                    <Row styles='no-pets-found-message'>
+                        <>{errorMessage}</>
+                    </Row>
+                    :
+                    !pets ?
+                        <Row styles='no-pets-found-message'>
+                            <>{NO_PETS_FOUND_MESSAGE}</>
                         </Row>
-                    ))}
-                </SymmetricalGrid>
-                :
-                <Row styles='no-pets-found-message'>
-                    <>{NO_PETS_FOUND_MESSAGE}</>
-                </Row>}
+                        :
+                        <SymmetricalGrid styles='search-results-grid' numOfColumns={3}>
+                            {pets.map((pet: Pet, index: number) => (
+                                <Row styles='search-pet-result-wrapper'>
+                                    <PetResult
+                                        key={index}
+                                        pet={pet}
+                                        onMoreDetailsRequest={moreDetailsRequestHandler}
+                                    />
+                                </Row>
+                            ))}
+                        </SymmetricalGrid>}
+            </>
         </Col >
     );
 }

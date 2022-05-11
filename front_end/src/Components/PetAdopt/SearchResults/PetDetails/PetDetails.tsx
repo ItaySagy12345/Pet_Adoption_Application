@@ -1,6 +1,6 @@
-import { BIO_WORDING, RETURN_PET_WORDING, ADOPT_WORDING, FOSTER_WORDING, PET_BIO_DEFAULT_PLACEHOLDER } from '../../../../Utils/Constants/constants';
+import { RETURN_PET_WORDING, ADOPT_WORDING, FOSTER_WORDING } from '../../../../Utils/Constants/constants';
 import GeneralButton from '../../../General/Buttons/GeneralButton/GeneralButton';
-import SymmetricalGrid from '../../../General/Grids/SymmetricalGrid/SymmetricalGrid';
+import PetDetailsGrid from './PetDetailsGrid/PetDetailsGrid';
 import Col from '../../../General/Flexboxes/Column/Col';
 import Row from '../../../General/Flexboxes/Row/Row';
 import { usePetDetails } from './usePetDetails';
@@ -11,7 +11,6 @@ import './PetDetails.css';
 function PetDetails({ pet }: PetDetailsProps) {
     const {
         activeUser,
-        petPropertiesArray,
         saveUnSaveButtonWording,
         returnPetHandler,
         adoptPetHandler,
@@ -25,25 +24,9 @@ function PetDetails({ pet }: PetDetailsProps) {
                 <Row styles='pet-details-image-container card'>
                     <img className="pet-details-image card" src={pet.image} />
                 </Row>
-                <Col styles='pet-info-container'>
-                    <SymmetricalGrid styles='pet-detail-grid' numOfColumns={2}>
-                        {petPropertiesArray.map(petDetail => (
-                            <Row styles='pet-detail'>
-                                <div className="category">
-                                    {petDetail.category}{petDetail.categoryValue}
-                                </div>
-                            </Row>
-                        ))}
-                    </SymmetricalGrid>
-                    <Col styles='pet-bio-container card'>
-                        <Row styles='pet-bio-wording'>
-                            <>{`📖 ${BIO_WORDING}: `}</>
-                        </Row>
-                        <Row styles='pet-bio'>
-                            <>{pet.bio ?? PET_BIO_DEFAULT_PLACEHOLDER}</>
-                        </Row>
-                    </Col>
-                </Col>
+                <Row styles='pet-details-grid-wrapper'>
+                    <PetDetailsGrid pet={pet} />
+                </Row>
                 <Row styles='action-buttons-container'>
                     {pet.userId === activeUser.userId ?
                         <Row styles='pet-details-button-container'>

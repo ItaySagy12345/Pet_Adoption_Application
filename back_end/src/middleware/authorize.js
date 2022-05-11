@@ -1,4 +1,4 @@
-import { AUTHORIZATION_ERROR, INVALID_TOKEN_ERROR } from '../library/constants.js';
+import { AUTHORIZATION_ERROR, INVALID_TOKEN_ERROR } from '../utils/constants/constants.js';
 import jwt from 'jsonwebtoken';
 import "dotenv/config";
 

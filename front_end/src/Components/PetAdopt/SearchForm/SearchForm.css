@@ -78,3 +78,26 @@
     height: 2.5rem;
     width: 100%;
 }
+
+@media (max-width: 1350px) {
+    .basic-search-container {
+        flex-direction: column;
+        height: 7.5rem;
+    }
+
+    .additional-options-button-container,
+    .search-form-button-container,
+    .search-fieldset,
+    .search-input {
+        width: 150px;
+    }
+
+    .height-weight-input-containers {
+        height: auto;
+        padding-bottom: 1rem;
+    }
+
+    .height-weight-input-container {
+        flex-direction: column;
+    }
+}

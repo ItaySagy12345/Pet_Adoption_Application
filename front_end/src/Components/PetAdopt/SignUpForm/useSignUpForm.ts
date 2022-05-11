@@ -71,6 +71,7 @@ export function useSignUpForm({ onAuthMethodChange, onSuccessfulSignUp }: SignUp
             signedUpUser && onAuthMethodChange(LOG_IN_WORDING);
             onSuccessfulSignUp(STATUS_OK);
             resetSignUpFormValues();
+            setIsLoading(false);
         } catch (err: any) {
             setErrorMessage(err);
             setIsLoading(false);

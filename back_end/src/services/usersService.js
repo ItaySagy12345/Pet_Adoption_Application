@@ -1,10 +1,10 @@
 import * as DBService from './DBService.js';
-import * as library from '../library/library.js';
+import * as library from '../utils/library/library.js';
 import * as petsService from '../services/petsService.js';
 
 export async function getUsers() {
     const SQL = 'SELECT userId, isAdmin, firstName, lastName, email, phoneNumber, personalBio FROM users';
-    return DBService.Query(SQL);
+    return DBService.QuerySecure(SQL);
 }
 
 export async function getFullUsers() {
@@ -17,13 +17,15 @@ export async function getFullUsers() {
 }
 
 export async function getPasswordByUserId(userId) {
-    const SQL = `SELECT hashPassword FROM users WHERE userId = '${userId}'`;
-    return DBService.Query(SQL);
+    const SQL = `SELECT hashPassword FROM users WHERE userId = ?`;
+    const SQL_PARAMS = [userId];
+    return DBService.QuerySecure(SQL, SQL_PARAMS);
 }
 
 export async function getUserById(userId) {
-    const SQL = `SELECT userId, isAdmin, firstName, lastName, email, phoneNumber, personalBio FROM users WHERE userId = '${userId}'`;
-    return DBService.Query(SQL);
+    const SQL = `SELECT userId, isAdmin, firstName, lastName, email, phoneNumber, personalBio FROM users WHERE userId = ?`;
+    const SQL_PARAMS = [userId];
+    return DBService.QuerySecure(SQL, SQL_PARAMS);
 }
 
 export async function getFullUserById(userId) {
@@ -55,10 +57,17 @@ export async function updateUser(userId, userUpdates) {
     let queryParameters = '';
     for (let queryParameter = 0; queryParameter < fieldsToUpdate.length; queryParameter++) {
         const [tableColumn, value] = fieldsToUpdate[queryParameter];
-        value === '' ? queryParameter++ : queryParameters += `${tableColumn}='${value}', `;
+        if (value === '') {
+            queryParameter++;
+        } else {
+            queryParameters += `${tableColumn} = '${value}', `;
+        }
     }
+    //Remove space and comma from end of queryParameters string:
     queryParameters = queryParameters.slice(0, -2);
 
-    const SQL = `UPDATE users SET ${queryParameters} WHERE userId='${userId}'`;
-    return DBService.Query(SQL);
+    const SQL = `UPDATE users SET ${queryParameters} WHERE userId = ?`;
+    const SQL_PARAMS = [userId];
+
+    return DBService.QuerySecure(SQL, SQL_PARAMS);
 }

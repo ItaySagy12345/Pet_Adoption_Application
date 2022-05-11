@@ -109,3 +109,18 @@ export const PET_ROUTE = '/pet';
 
 //STATUS CODES:
 export const STATUS_OK = 200;
+
+//NUMBERS:
+export const DEBOUNCE_TIMER = 500;
+
+//OBJECTS:
+export const ADOPTION_STATUS_DICT: { [key: number]: string; } = {
+    0: "Available",
+    1: "Adopted",
+    2: "Fostered"
+};
+
+export const HYPOALLERGENIC_STATUS_DICT: { [key: number]: string; } = {
+    0: "Hypoallergenic",
+    1: "Not Hypoallergenic",
+};

@@ -18,7 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import './SearchForm.css';
 
-function SearchForm({ onSearchPets }: SearchFormProps) {
+function SearchForm({ onSearchPets, onError }: SearchFormProps) {
     const {
         animalType,
         adoptionStatus,
@@ -38,7 +38,7 @@ function SearchForm({ onSearchPets }: SearchFormProps) {
         minWeightChangeHandler,
         maxWeightChangeHandler,
         searchPetsHandler
-    } = useSearchForm({ onSearchPets });
+    } = useSearchForm({ onSearchPets, onError });
 
     return (
         <Col styles='search-form-container card'>

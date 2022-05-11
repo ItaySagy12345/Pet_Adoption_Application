@@ -1,8 +1,15 @@
 .pet-result-container {
     height: 100%;
     width: 100%;
+    z-index: 1000;
     justify-content: center;
     background-color: whitesmoke;
+    transition: all .2s ease-in-out;
+}
+
+.pet-result-container:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transform: scale(1.05);
 }
 
 .pet-result-inner-container {

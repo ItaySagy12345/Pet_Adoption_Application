@@ -11,7 +11,7 @@ function PetResult({ pet, onMoreDetailsRequest }: PetResultProps) {
         <Col styles='pet-result-container card'>
             <Col styles='pet-result-inner-container'>
                 <Row styles='pet-result-image-container card'>
-                    <img className="pet-result-image card" src={pet.image} />
+                    <img className="pet-result-image card" src={pet.image} alt="owned-pet" />
                 </Row>
                 <Row styles='pet-name-container'>
                     <Row styles='pet-name'>
@@ -32,7 +32,7 @@ function PetResult({ pet, onMoreDetailsRequest }: PetResultProps) {
                             wording={MORE_DETAILS_BUTTON_WORDING}
                             isDisabled={false}
                             borderRadius={6}
-                            onAction={() => onMoreDetailsRequest(pet)}
+                            onAction={(event: any) => onMoreDetailsRequest(event, pet)}
                         />
                     </Row>
                 </Row>

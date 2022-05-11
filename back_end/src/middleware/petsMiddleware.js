@@ -1,7 +1,7 @@
 import * as petSchemas from '../schemas/petSchemas.js';
 import * as petsService from '../services/petsService.js';
 import Ajv from "ajv";
-import { DATA_VALIDATION_ERROR, GENERAL_EXISTING_PET_OWNER_ERROR, REQUESTOR_EXISTING_PET_OWNER_ERROR, TECHNICAL_ERROR } from '../library/constants.js';
+import { DATA_VALIDATION_ERROR, GENERAL_EXISTING_PET_OWNER_ERROR, REQUESTOR_EXISTING_PET_OWNER_ERROR, TECHNICAL_ERROR } from '../utils/constants/constants.js';
 
 export function convertPetFormDataTypes(req, res, next) {
     const formData = req.body;

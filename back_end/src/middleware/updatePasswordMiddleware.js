@@ -1,4 +1,4 @@
-import { NEW_PASSWORD_INCONSISTENCY_ERROR, OLD_PASSWORD_INCONSISTENCY_ERROR } from '../library/constants.js';
+import { NEW_PASSWORD_INCONSISTENCY_ERROR, OLD_PASSWORD_INCONSISTENCY_ERROR } from '../utils/constants/constants.js';
 import * as usersService from '../services/usersService.js';
 import bcrypt from 'bcrypt';
 

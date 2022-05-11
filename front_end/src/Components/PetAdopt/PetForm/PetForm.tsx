@@ -37,7 +37,7 @@ PetForm.defaultProps = {
     },
 };
 
-function PetForm({ pet, formActionType }: PetFormProps) {
+function PetForm({ pet, formActionType, onChangePetInfo }: PetFormProps) {
     const {
         name,
         adoptionStatus,
@@ -69,7 +69,7 @@ function PetForm({ pet, formActionType }: PetFormProps) {
         addOrEditPetHandler,
         imageUploadChangeHandler,
         getSubmitButtonWording
-    } = usePetForm({ pet, formActionType });
+    } = usePetForm({ pet, formActionType, onChangePetInfo });
 
     return (
         <Col styles='add-pet-form-container card' >

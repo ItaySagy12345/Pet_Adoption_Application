@@ -11,3 +11,9 @@
     height: 95%;
     width: 95%;
 }
+
+@media (max-width: 1000px) {
+    .home-slides-container {
+        width: 100%;
+    }
+}

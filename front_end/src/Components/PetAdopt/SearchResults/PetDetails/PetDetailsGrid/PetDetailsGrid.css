@@ -1,0 +1,40 @@
+.pet-details-info-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.pet-details-info-inner-container {
+    height: 100%;
+    width: 95%;
+    gap: 1rem;
+}
+
+.pet-detail-grid {
+    width: 100%;
+}
+
+.pet-detail {
+    height: 100%;
+    flex: 1;
+}
+
+.category {
+    height: 100%;
+    flex: 1;
+}
+
+.pet-details-bio-container {
+    width: 100%;
+}
+
+.pet-bio-wording {
+    width: 100%;
+    justify-content: center;
+}
+
+.pet-bio {
+    height: 3rem;
+    width: 100%;
+    justify-content: center;
+}

@@ -3,7 +3,7 @@ import * as petService from '../../../Services/petService';
 import { useState, useRef } from "react";
 import { PetFormProps } from "./IPetFormProps";
 
-export function usePetForm({ pet, formActionType }: PetFormProps) {
+export function usePetForm({ pet, formActionType, onChangePetInfo }: PetFormProps) {
     const [name, setName] = useState<string>(pet.name);
     const [adoptionStatus, setAdoptionStatus] = useState<string>(pet.adoptionStatus.toString());
     const [animalType, setAnimalType] = useState<string>(pet.animalType);
@@ -112,9 +112,10 @@ export function usePetForm({ pet, formActionType }: PetFormProps) {
     };
 
     const handleSuccessfulSubmission = () => {
+        onChangePetInfo && onChangePetInfo();
         setIsLoading(false);
         setIsSuccessfulUpdate(true);
-        resetPetFormValues();
+        formActionType === ADD_PET_WORDING && resetPetFormValues();
         setTimeout(() => setIsSuccessfulUpdate(false), 5000);
     };
 

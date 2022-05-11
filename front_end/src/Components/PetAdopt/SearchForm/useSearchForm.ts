@@ -1,10 +1,12 @@
 import * as petService from '../../../Services/petService';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchFormProps } from './ISearchFormProps';
 import { Pet } from '../../../Interfaces/IPet';
 import { PetSearch } from '../../../Interfaces/IPetSearch';
+import { useDebounce } from '../../../Hooks/useDebounce';
+import { DEBOUNCE_TIMER } from '../../../Utils/Constants/constants';
 
-export function useSearchForm({ onSearchPets }: SearchFormProps) {
+export function useSearchForm({ onSearchPets, onError }: SearchFormProps) {
     const [animalType, setAnimalType] = useState<string>('');
     const [adoptionStatus, setAdoptionStatus] = useState<number | undefined>(undefined);
     const [breed, setBreed] = useState<string>('');
@@ -14,6 +16,9 @@ export function useSearchForm({ onSearchPets }: SearchFormProps) {
     const [maxWeight, setMaxWeight] = useState<string>('');
     const [isAdvancedSearch, setIsAdvancedSearch] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [didMount, setDidMount] = useState<boolean>(false);
+    const [petSearchParams, setPetSearchParams] = useState<PetSearch>({});
+    const debouncedPetSearchParams = useDebounce<any>(petSearchParams, DEBOUNCE_TIMER);
 
     const searchTypeChangeHandler = () => {
         setIsAdvancedSearch(!isAdvancedSearch);
@@ -47,6 +52,25 @@ export function useSearchForm({ onSearchPets }: SearchFormProps) {
         setMaxWeight(input);
     };
 
+    useEffect(() => {
+        if (!didMount) {
+            setDidMount(true);
+            return;
+        }
+        didMount && searchAndSendPets(debouncedPetSearchParams);
+    }, [debouncedPetSearchParams]);
+
+    const searchAndSendPets = async (debouncedPetSearchParams: PetSearch) => {
+        try {
+            const petSearchResults: Pet[] | null = await petService.getPetsBySearchCriteria(debouncedPetSearchParams);
+            onSearchPets(petSearchResults);
+            setIsLoading(false);
+        } catch (err: any) {
+            onError(err.message);
+            setIsLoading(false);
+        }
+    };
+
     const searchPetsHandler = async (event: any) => {
         event.preventDefault();
         setIsLoading(true);
@@ -59,10 +83,9 @@ export function useSearchForm({ onSearchPets }: SearchFormProps) {
             minWeight: minWeight === '' ? null : +minWeight,
             maxWeight: maxWeight === '' ? null : +maxWeight
         });
-        const petSearchResults: Pet[] = await petService.getPetsBySearchCriteria(petSearchParams);
-        onSearchPets(petSearchResults);
+        //Triggers debouncer:
+        setPetSearchParams(petSearchParams);
         resetSearchFormValues();
-        setIsLoading(false);
     };
 
     const getPetSearchParams = (searchParamsObject: PetSearch): PetSearch => {

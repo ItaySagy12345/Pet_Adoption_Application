@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon src/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest"
     },
-    "author": "",
+    "author": "Itay Sagy <itayemails@gmail.com>",
     "license": "ISC",
     "dependencies": {
         "ajv": "^8.11.0",
@@ -17,13 +17,18 @@
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.0.0",
-        "express": "^4.17.3",
+        "express": "^4.18.1",
         "fluent-json-schema": "^3.1.0",
         "jsonwebtoken": "^8.5.1",
         "multer": "^1.4.4",
         "mysql": "^2.18.1",
-        "nanoid": "^3.3.3",
-        "nodemon": "^2.0.15"
+        "nanoid": "^3.3.4",
+        "nodemon": "^2.0.16",
+        "pino-http": "^7.0.0"
     },
-    "type": "module"
+    "type": "module",
+    "devDependencies": {
+        "jest": "^28.1.0"
+    },
+    "repository": "https://github.com/israeltechchallenge/fs_pet_adoption_be-ItaySagy12345"
 }

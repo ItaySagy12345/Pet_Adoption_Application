@@ -47,12 +47,14 @@
 
 /* SCROLLBAR ANIMATION*/
 #root::-webkit-scrollbar,
+.pet-info-container::-webkit-scrollbar,
 .user-data-details-container::-webkit-scrollbar,
 .personal-bio-textarea::-webkit-scrollbar {
     width: 12px;
 }
 
 #root::-webkit-scrollbar-thumb,
+.pet-info-container::-webkit-scrollbar-thumb,
 .user-data-details-container::-webkit-scrollbar-thumb,
 .personal-bio-textarea::-webkit-scrollbar-thumb {
     background-color: var(--theme-green);

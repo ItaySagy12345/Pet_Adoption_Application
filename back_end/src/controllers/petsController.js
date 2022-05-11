@@ -1,7 +1,7 @@
-import * as library from '../library/library.js';
+import * as library from '../utils/library/library.js';
 import * as petsService from '../services/petsService.js';
 import * as usersService from '../services/usersService.js';
-import { TECHNICAL_ERROR } from '../library/constants.js';
+import { TECHNICAL_ERROR } from '../utils/constants/constants.js';
 import { v2 as cloudinary } from "cloudinary";
 import { nanoid } from "nanoid";
 import fs from "fs";
@@ -70,6 +70,11 @@ export async function getOwnedPetsByUserId(req, res, next) {
 export async function updatePet(req, res, next) {
     try {
         const petToUpdate = req.body;
+
+        //Ensure pet's userId = null if adoptionStatus changed to 0 (available);
+        if (petToUpdate.adoptionStatus === 0) {
+            petToUpdate.userId = null;
+        }
 
         //Pet image upload:
         const uploadResult = req.file && (await cloudinary.uploader.upload(req.file.path));

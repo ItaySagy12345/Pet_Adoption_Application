@@ -1,6 +1,6 @@
 import * as authSchemas from '../schemas/authSchemas.js';
 import * as authService from "../services/authService.js";
-import { DATA_VALIDATION_ERROR, EXISTING_USER_ERROR, NEW_PASSWORD_INCONSISTENCY_ERROR, TECHNICAL_ERROR } from '../library/constants.js';
+import { DATA_VALIDATION_ERROR, EXISTING_USER_ERROR, NEW_PASSWORD_INCONSISTENCY_ERROR, TECHNICAL_ERROR } from '../utils/constants/constants.js';
 import bcrypt from 'bcrypt';
 import Ajv from "ajv";
 

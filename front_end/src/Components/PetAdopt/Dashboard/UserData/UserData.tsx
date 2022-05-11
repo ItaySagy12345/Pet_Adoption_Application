@@ -9,12 +9,10 @@ import '../../../../Styles/general.css';
 import './UserData.css';
 
 function User({ user, onMoreDetailsRequest }: UserDataProps) {
-    const [isMoreDetails, setIsMoreDetails] = useState<boolean>(false);
 
     const moreDetailsRequestHandler = (event: any, pet: Pet) => {
         event.stopPropagation();
         onMoreDetailsRequest(pet);
-        setIsMoreDetails(true);
     };
 
     return (
@@ -25,18 +23,15 @@ function User({ user, onMoreDetailsRequest }: UserDataProps) {
             </Row>
             <SymmetricalGrid styles='pets-grid' numOfColumns={2}>
                 <>
-                    {!isMoreDetails &&
-                        user.ownedPets?.map((pet, index) => (
-                            <>
-                                <Row styles='pet-result-wrapper'>
-                                    <PetResult
-                                        key={index}
-                                        pet={pet}
-                                        onMoreDetailsRequest={moreDetailsRequestHandler}
-                                    />
-                                </Row>
-                            </>
-                        ))}
+                    {user.ownedPets?.map((pet, index) => (
+                        <Row styles='pet-result-wrapper'>
+                            <PetResult
+                                key={index}
+                                pet={pet}
+                                onMoreDetailsRequest={moreDetailsRequestHandler}
+                            />
+                        </Row>
+                    ))}
                 </>
             </SymmetricalGrid>
         </Col>

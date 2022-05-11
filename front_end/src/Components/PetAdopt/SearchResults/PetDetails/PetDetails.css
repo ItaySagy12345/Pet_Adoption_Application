@@ -8,7 +8,7 @@
 .pet-details-inner-container {
     height: 95%;
     width: 95%;
-    gap: 2%;
+    justify-content: space-between;
 }
 
 .pet-details-image-container {
@@ -22,42 +22,12 @@
     width: 100%;
 }
 
-.pet-info-container {
-    width: 90%;
-}
-
-.pet-detail-grid {
+.pet-details-grid-wrapper {
     width: 100%;
-}
-
-.pet-detail {
-    height: 100%;
-    flex: 1;
-}
-
-.category {
-    height: 100%;
-    flex: 1;
-}
-
-.pet-bio-container {
-    width: 100%;
-}
-
-.pet-bio-wording {
-    height: 1.5rem;
-    width: 100%;
-    justify-content: center;
-}
-
-.pet-bio {
-    height: 5rem;
-    width: 100%;
-    justify-content: center;
+    gap: 0.5rem;
 }
 
 .action-buttons-container {
-    height: 2.5rem;
     width: 100%;
     justify-content: space-evenly;
 }

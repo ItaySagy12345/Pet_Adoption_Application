@@ -18,6 +18,7 @@
 .pets-grid {
     max-height: 20rem;
     gap: 3rem;
+    padding-bottom: 1.5rem;
 }
 
 .pet-result-wrapper {

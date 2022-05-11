@@ -10,10 +10,15 @@ import '../widePage.css';
 function DashboardPage() {
     const [usersData, setUsersData] = useState<ActiveUser[]>([]);
     const [petsData, setPetsData] = useState<Pet[]>([]);
+    const [hasPetInfoChanged, setHasPetInfoChanged] = useState<boolean>(false);
 
     useEffect(() => {
         getUsersAndPetData();
-    }, []);
+    }, [hasPetInfoChanged]);
+
+    const petInfoChangeHandler = () => {
+        setHasPetInfoChanged(!hasPetInfoChanged);
+    };
 
     const getUsersAndPetData = async () => {
         const users: ActiveUser[] = await userService.getFullUsers();
@@ -27,6 +32,7 @@ function DashboardPage() {
             <Dashboard
                 users={usersData}
                 pets={petsData}
+                onChangePetInfo={petInfoChangeHandler}
             />
         </Row>
     );

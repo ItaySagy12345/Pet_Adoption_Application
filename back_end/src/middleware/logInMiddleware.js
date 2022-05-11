@@ -1,9 +1,9 @@
 import * as authService from "../services/authService.js";
 import * as usersService from '../services/usersService.js';
-import * as library from '../library/library.js';
+import * as library from '../utils/library/library.js';
 import * as authSchemas from '../schemas/authSchemas.js';
 import Ajv from "ajv";
-import { DATA_VALIDATION_ERROR, NON_EXISTING_USER_ERROR, TECHNICAL_ERROR } from "../library/constants.js";
+import { DATA_VALIDATION_ERROR, NON_EXISTING_USER_ERROR, TECHNICAL_ERROR } from "../utils/constants/constants.js";
 
 const ajv = new Ajv();
 const validateLogIn = ajv.compile(authSchemas.logInSchema.valueOf());

@@ -1,7 +1,7 @@
 import PetResult from '../SearchResults/PetResult/PetResult';
+import SymmetricalGrid from '../../General/Grids/SymmetricalGrid/SymmetricalGrid';
 import { useInspectedPet } from '../../../Hooks/useInspectedPet';
 import { InspectedPetContextType } from '../../../Contexts/InspectedPetContext/InspectedPetContextType';
-import SymmetricalGrid from '../../General/Grids/SymmetricalGrid/SymmetricalGrid';
 import { Pet } from '../../../Interfaces/IPet';
 import { MyPetsProps } from './IMyPetsProps';
 import '../../../Styles/general.css';
@@ -10,7 +10,8 @@ import './MyPets.css';
 function MyPets({ pets }: MyPetsProps) {
     const { updateInspectedPet } = useInspectedPet() as InspectedPetContextType;
 
-    const moreDetailsRequestHandler = (pet: Pet) => {
+    //Event sent by default by PetResult component:
+    const moreDetailsRequestHandler = (event: any, pet: Pet) => {
         updateInspectedPet(pet);
     };
 

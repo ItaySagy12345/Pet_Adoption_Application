@@ -1,6 +1,6 @@
 import * as authService from "../services/authService.js";
-import * as library from '../library/library.js';
-import { LOG_IN_DATA_ERROR, TECHNICAL_ERROR } from "../library/constants.js";
+import * as library from '../utils/library/library.js';
+import { LOG_IN_DATA_ERROR, TECHNICAL_ERROR } from "../utils/constants/constants.js";
 import { nanoid } from "nanoid";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
